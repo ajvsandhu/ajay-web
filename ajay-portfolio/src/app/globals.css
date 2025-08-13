@@ -1,0 +1,772 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ========================================
+   CSS CUSTOM PROPERTIES & THEME VARIABLES
+   ======================================== */
+:root {
+  /* Enhanced 8-bit color palette with professional tones */
+  --pixel-black: #0a0a0f;
+  --pixel-dark-blue: #1a1a2e;
+  --pixel-blue: #0f3460;
+  --pixel-cyan: #16213e;
+  --pixel-green: #0e4b50;
+  --pixel-yellow: #2e8b57;
+  --pixel-orange: #ff6b35;
+  --pixel-red: #e94560;
+  --pixel-purple: #533483;
+  --pixel-pink: #f38ba8;
+  --pixel-white: #f8f8f2;
+  --pixel-gray: #c9cbff;
+  --pixel-light-gray: #e0e2ff;
+  
+  /* Professional accent colors */
+  --accent-primary: #74c0fc;
+  --accent-secondary: #94d3a2;
+  --accent-tertiary: #ffb3ba;
+  --accent-warning: #ffd93d;
+  --accent-success: #6bcf7f;
+  --accent-error: #ff6b6b;
+  
+  /* Background gradients */
+  --bg-primary: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+  --bg-secondary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --bg-card: rgba(26, 26, 46, 0.8);
+  
+  /* UI Component Colors */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0px;
+  
+  /* Typography */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-size-xs: 8px;
+  --font-size-sm: 10px;
+  --font-size-base: 12px;
+  --letter-spacing: 0.5px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.3s ease;
+  
+  /* Shadows */
+  --shadow-soft: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+/* Inline theme variables for Tailwind compatibility */
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ========================================
+   BASE STYLES & RESET
+   ======================================== */
+* {
+  border-color: hsl(var(--border));
+  box-sizing: border-box;
+}
+
+/* Global scroll bar elimination while preserving functionality */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  overflow-x: hidden;
+  /* Hide scroll bars but keep scroll functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--pixel-white);
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing);
+  overflow-x: hidden;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  /* Additional scroll bar hiding */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Hide all scroll bars globally while preserving scroll */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Specific targeting of main containers */
+#__next,
+[data-nextjs-scroll-focus-boundary] {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+#__next::-webkit-scrollbar,
+[data-nextjs-scroll-focus-boundary]::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE OPTIMIZATIONS
+   ======================================== */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+
+  
+  /* Enhanced mobile text handling */
+  p, h1, h2, h3, h4, h5, h6, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Responsive media */
+  img, video, iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Flex and grid improvements */
+  .grid, .flex {
+    min-width: 0;
+  }
+  
+  .flex {
+    flex-wrap: wrap;
+  }
+  
+  /* Container improvements */
+  .particles-bg {
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  section {
+    overflow-x: hidden;
+    padding-inline: 1rem;
+  }
+  
+  /* Responsive max-width containers */
+  .max-w-4xl, .max-w-5xl, .max-w-3xl {
+    width: 100%;
+    padding-inline: 1rem;
+  }
+  
+  /* Card responsiveness */
+  .glass {
+    width: 100%;
+    min-width: 0;
+  }
+  
+  /* Code block handling */
+  pre, code {
+    overflow-x: auto;
+    max-width: 100%;
+    word-break: break-all;
+  }
+  
+  /* Button responsiveness */
+  button {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  
+  /* Grid layout fixes */
+  .lg\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Consistent mobile padding */
+  .px-4 { padding-inline: 1rem; }
+  .px-6 { padding-inline: 1.5rem; }
+  .px-8 { padding-inline: 2rem; }
+  
+  /* Absolute positioning constraints */
+  .absolute {
+    max-width: 100vw;
+  }
+  
+  /* Profile image responsiveness */
+  .relative img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+  
+  /* Typography scaling */
+  .text-xs, .text-sm, .text-base, .text-lg, .text-xl {
+    word-break: break-word;
+  }
+}
+
+
+
+/* ========================================
+   BACKGROUND & PARTICLE EFFECTS
+   ======================================== */
+.gradient-bg {
+  background: var(--bg-primary);
+  background-image: 
+    linear-gradient(rgba(116, 192, 252, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(116, 192, 252, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+  position: relative;
+}
+
+.gradient-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(116, 192, 252, 0.01) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Fix for projects section scroll bar - eliminate any unwanted scroll */
+#projects {
+  overflow: visible !important;
+}
+
+#projects *,
+#projects *:before,
+#projects *:after {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+#projects .glass {
+  overflow: hidden !important;
+}
+
+/* Eliminate scroll bars from project descriptions and text areas */
+#projects p,
+#projects div,
+#projects span,
+#projects .space-y-8,
+#projects .space-y-6,
+#projects .space-y-3,
+#projects .grid,
+#projects .flex,
+#projects section,
+#projects article,
+#projects .relative,
+#projects .absolute {
+  overflow: visible !important;
+}
+
+/* Ensure no text containers create scroll bars */
+#projects .text-base,
+#projects .text-sm,
+#projects .text-xs,
+#projects .leading-relaxed,
+#projects .max-w-2xl,
+#projects .max-w-xl,
+#projects .w-full {
+  overflow: visible !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Force remove scroll bars from any motion divs or framer-motion elements */
+#projects [data-framer-motion],
+#projects .motion-div,
+#projects .motion-section {
+  overflow: visible !important;
+}
+
+/* Comprehensive scroll bar elimination */
+#projects ::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+#projects {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Optimized particle system */
+.particles-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+  user-select: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 0;
+  background: var(--pixel-cyan);
+  box-shadow: 0 0 2px currentColor;
+  animation: pixelFloat 4s ease-in-out infinite;
+}
+
+.particle:nth-child(2n) {
+  background: var(--pixel-green);
+  animation-delay: -1s;
+}
+
+.particle:nth-child(3n) {
+  background: var(--pixel-yellow);
+  animation-delay: -2s;
+}
+
+.particle:nth-child(4n) {
+  background: var(--pixel-pink);
+  animation-delay: -3s;
+}
+
+/* ========================================
+   CARD & GLASS EFFECTS
+   ======================================== */
+.glass {
+  background: var(--bg-card);
+  border: 2px solid var(--accent-primary);
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    var(--shadow-medium),
+    0 0 0 1px rgba(116, 192, 252, 0.1),
+    inset 0 1px 0 rgba(248, 248, 242, 0.1);
+  position: relative;
+  transition: var(--transition-base);
+}
+
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0.6;
+}
+
+.glass:hover {
+  border-color: var(--accent-secondary);
+  box-shadow: 
+    var(--shadow-strong),
+    0 0 0 1px rgba(148, 211, 162, 0.2),
+    inset 0 1px 0 rgba(248, 248, 242, 0.15);
+}
+
+/* ========================================
+   BUTTON SYSTEM
+   ======================================== */
+.btn-8bit-primary,
+button,
+.btn,
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+  background: linear-gradient(145deg, var(--accent-primary), #5c9cdb);
+  color: var(--pixel-black);
+  border: 2px solid var(--pixel-white);
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-sm);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  box-shadow: 
+    var(--shadow-soft),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-8bit-primary:hover,
+button:hover,
+.btn:hover,
+[role="button"]:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background: linear-gradient(145deg, var(--accent-secondary), #7bc77f);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-8bit-primary:active,
+button:active,
+.btn:active,
+[role="button"]:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Button variants */
+.btn-8bit-red {
+  background: linear-gradient(145deg, var(--accent-error), #e55555);
+  color: var(--pixel-white);
+}
+
+.btn-8bit-red:hover {
+  background: linear-gradient(145deg, #ff8a8a, var(--accent-error));
+  transform: translateY(-2px);
+}
+
+.btn-8bit-green {
+  background: linear-gradient(145deg, var(--accent-success), #5bb85b);
+  color: var(--pixel-white);
+}
+
+.btn-8bit-green:hover {
+  background: linear-gradient(145deg, #7dd87d, var(--accent-success));
+  transform: translateY(-2px);
+}
+
+.btn-8bit-white-sm {
+  background: linear-gradient(145deg, var(--pixel-white), #e8e8e8);
+  color: var(--pixel-black);
+  border: 2px solid var(--pixel-gray);
+  padding: 8px 16px;
+  font-size: var(--font-size-xs);
+}
+
+.btn-8bit-white-sm:hover {
+  background: linear-gradient(145deg, #f0f0f0, var(--pixel-white));
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   FORM ELEMENTS
+   ======================================== */
+input, textarea {
+  background: var(--pixel-dark-blue);
+  color: var(--pixel-white);
+  border: 2px solid var(--accent-primary);
+  border-radius: 4px;
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-sm);
+  padding: 12px;
+  letter-spacing: var(--letter-spacing);
+  transition: var(--transition-base);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(116, 192, 252, 0.1);
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent-secondary);
+  background: rgba(26, 26, 46, 0.9);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(148, 211, 162, 0.3),
+    0 0 8px rgba(148, 211, 162, 0.2);
+}
+
+/* ========================================
+   TYPOGRAPHY & TEXT EFFECTS
+   ======================================== */
+.pixel-text {
+  font-family: var(--font-pixel);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  letter-spacing: var(--letter-spacing);
+}
+
+.pixel-glow {
+  text-shadow: 
+    0 0 4px rgba(116, 192, 252, 0.3),
+    1px 1px 0 rgba(0, 0, 0, 0.8);
+  animation: subtleGlow 4s ease-in-out infinite alternate;
+}
+
+/* Badge styling */
+.badge-8bit {
+  background: linear-gradient(145deg, var(--accent-primary), #5c9cdb);
+  color: var(--pixel-black);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xs);
+  padding: 4px 8px;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing);
+  border-radius: 2px;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   BORDER STYLES
+   ======================================== */
+.pixel-border-blue {
+  border: 3px solid var(--accent-primary);
+  border-radius: 4px;
+  box-shadow: 
+    0 0 0 1px var(--pixel-black),
+    var(--shadow-soft);
+}
+
+.pixel-border-green {
+  border: 3px solid var(--accent-secondary);
+  border-radius: 4px;
+  box-shadow: 
+    0 0 0 1px var(--pixel-black),
+    var(--shadow-soft);
+}
+
+.pixel-border-purple {
+  border: 3px solid var(--accent-tertiary);
+  border-radius: 4px;
+  box-shadow: 
+    0 0 0 1px var(--pixel-black),
+    var(--shadow-soft);
+}
+
+/* ========================================
+   MARIO THEME ANIMATIONS
+   ======================================== */
+.mario-sprite {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.coin-spin {
+  animation: coinSpin 0.6s ease-in-out infinite;
+}
+
+.mario-running {
+  animation: marioRun 0.3s ease-in-out infinite;
+}
+
+/* Mario transition control */
+.mario-transition-active {
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.mario-transition-active * {
+  pointer-events: none;
+}
+
+.mario-transition-active::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+.mario-transition-active {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* ========================================
+   SPECIAL EFFECTS
+   ======================================== */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(0, 255, 255, 0.03) 50%,
+    transparent 51%,
+    rgba(0, 255, 255, 0.03) 100%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scanlines 2s linear infinite;
+}
+
+/* ========================================
+   COMPLETE SCROLLBAR ELIMINATION
+   ======================================== */
+/* Completely hide all scroll bars across all browsers */
+html, body, *, *::before, *::after {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar,
+*::before::-webkit-scrollbar,
+*::after::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Target all possible scroll bar elements */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+   ======================================== */
+@keyframes pixelFloat {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    opacity: 0.3;
+  }
+  25% { 
+    transform: translateY(-5px) scale(1.2);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-10px) scale(1);
+    opacity: 0.5;
+  }
+  75% { 
+    transform: translateY(-5px) scale(0.8);
+    opacity: 0.9;
+  }
+}
+
+@keyframes subtleGlow {
+  from { 
+    text-shadow: 
+      0 0 4px rgba(116, 192, 252, 0.2),
+      1px 1px 0 rgba(0, 0, 0, 0.8);
+  }
+  to { 
+    text-shadow: 
+      0 0 6px rgba(116, 192, 252, 0.4),
+      1px 1px 0 rgba(0, 0, 0, 0.8);
+  }
+}
+
+@keyframes coinSpin {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(90deg); }
+  100% { transform: rotateY(180deg); }
+}
+
+@keyframes marioRun {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
