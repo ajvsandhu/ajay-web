@@ -9,17 +9,17 @@ import { Footer } from "@/components/ui/footer";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 import { VinylPlayer } from "@/components/ui/vinyl-player";
 import { BsPersonStanding } from "react-icons/bs";
+import { MdOutlineSportsBasketball } from "react-icons/md";
 import { 
   GraduationCap, 
-  Coffee, 
-  Gamepad2, 
   Music,
   MapPin,
   Calendar,
   Award,
   BookOpen
 } from "lucide-react";
-
+import { FaRunning } from "react-icons/fa";
+import { BiCameraMovie } from "react-icons/bi";
 import Link from "next/link";
 import { songs } from "@/config/songs";
 
@@ -32,10 +32,10 @@ interface Certificate {
 }
 
 const interests = [
-  { name: "WATCHING AND PLAYING SPORTS", icon: Gamepad2, color: "var(--pixel-blue)" },
-  { name: "RUNNING", icon: Coffee, color: "var(--pixel-yellow)" },
+  { name: "WATCHING AND PLAYING SPORTS", icon: MdOutlineSportsBasketball, color: "var(--pixel-blue)" },
+  { name: "RUNNING", icon: FaRunning, color: "var(--pixel-yellow)" },
   { name: "LEARNING ABOUT HISTORY", icon: BookOpen, color: "var(--pixel-green)" },
-  { name: "WATCHING MOVIES/TV SHOWS", icon: Music, color: "var(--pixel-purple)" },
+  { name: "WATCHING MOVIES/TV SHOWS", icon: BiCameraMovie, color: "var(--pixel-purple)" },
 ];
 
 const certificates: Certificate[] = [
@@ -306,4 +306,4 @@ export default function About() {
       </div>
     </>
   );
-} 
+}
