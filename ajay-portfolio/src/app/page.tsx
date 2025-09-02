@@ -462,7 +462,7 @@ export default function Home() {
                     </button>
                   </Link>
                   <a 
-                    href="https://drive.google.com/file/d/171iChNPT4nQj-EzAZ93xEevR4-KqRwfj/view" 
+                    href="https://drive.google.com/file/d/11wYw_0j5hVoFZgoRrkWiy82es5rfQ8l1/view?usp=sharing" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="relative z-50"
