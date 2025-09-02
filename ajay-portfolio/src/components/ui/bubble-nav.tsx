@@ -9,7 +9,7 @@ import { usePageTransition } from "./page-transition-provider";
 const navItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "About", href: "/about", icon: User },
-  { name: "Resume", href: "https://drive.google.com/file/d/1NF73YzD2FLP2XM11HBOVdkbVu1iEzxiY/view", icon: FileText, external: true },
+  { name: "Resume", href: "https://drive.google.com/file/d/171iChNPT4nQj-EzAZ93xEevR4-KqRwfj/view", icon: FileText, external: true },
   { name: "Contact", href: "/contact", icon: Mail },
 ];
 
