@@ -42,6 +42,25 @@ const projects = [
   },
   {
     id: 2,
+    title: "Canadian Unemployment Forecasting (Macro ML)",
+    description: "Forecasting Canadian unemployment using macroeconomic indicators and exploring how monetary policy influences short-term labor market dynamics.",
+    longDescription: "I explored whether Canadian unemployment can be predicted using macroeconomic indicators and how interest-rate decisions feed through into the labour market. Using monthly data from 2009–2024, I built and evaluated a forecasting pipeline around several baseline, time-series, and machine-learning models. The project walks from data cleaning and feature engineering through model selection, diagnostic checks, and scenario design.",
+    tech: ["Python", "pandas", "scikit-learn", "statsmodels", "XGBoost", "Time Series", "Ridge Regression", "ARIMA", "VAR"],
+    github: "https://github.com/ajvsandhu/macro-forecasting-ml-canada",
+    type: "Data Science / ML Research",
+    duration: "2–3 months",
+    team: "Solo Project",
+    features: [
+      "Seven forecasting models (baselines, ARIMA, VAR, Random Forest, XGBoost, Ridge)",
+      "Scenario simulation for Bank of Canada rate paths",
+      "EDA: correlation, stationarity, lagged effects",
+      "Chronological train/test split; RMSE, MAE, MAPE evaluation; data from StatCan, Bank of Canada, FRED"
+    ],
+    challenges: "Handling non-stationary macro series with differencing and changes, addressing multicollinearity (e.g. CPI and GDP) with Ridge and tree-based models, avoiding data leakage (e.g. excluding unemp_change_1m and unemp_rolling_12m), and interpreting scenario extrapolation for rate levels outside the training range.",
+    impact: "Shows that simple, interpretable models (especially Persistence and Ridge) can match or beat more complex ML at a 1‑month horizon for Canadian unemployment. The scenario module turns interest‑rate paths into plausible unemployment trajectories, making the work useful as a 'what if' policy tool and a demonstration of end‑to‑end econometric modeling."
+  },
+  {
+    id: 3,
     title: "Movie Recommendation Tool",
     description: "A personalised, interactive movie recommendation tool to help friends and casual movie watchers save time and avoid endless scrolling.",
     longDescription: "I built a personalised, interactive movie recommendation tool to help friends and casual movie watchers save time and avoid endless scrolling. I noticed how often people, especially students and busy professionals, struggled to pick a movie quickly, so I designed a solution using Python tailored recommendations based on their preferences.",
@@ -58,26 +77,6 @@ const projects = [
     ],
     challenges: "Processing user preferences like genre, era, and runtime to provide accurate recommendations while maintaining a simple and intuitive user interface.",
     impact: "The tool narrows decision-making by processing the user's preferences like genre, era, and runtime, then returning recommendations based on them. I showed my software to my friends, and they reported saving 15+ minutes when using the app."
-  },
-  {
-    id: 3,
-    title: "Sorting Visualizer",
-    description: "A dynamic sorting algorithm visualizer to help students and curious learners better understand how sorting algorithms work beneath the surface.",
-    longDescription: "I created this Sorting Visualizer to help students and curious learners better understand how sorting algorithms work beneath the surface. The tool dynamically generates arrays of random numbers and allows users to visually explore how algorithms like merge sort process and organise data step by step.",
-    tech: ["JavaScript", "HTML5 Canvas", "Algorithm Visualization", "Interactive UI"],
-    github: "https://github.com",
-    demo: "https://demo.com",
-    type: "Educational Tool",
-    duration: "2 months",
-    team: "Solo Project",
-    features: [
-      "Dynamic array generation",
-      "Step-by-step algorithm visualization",
-      "Multiple sorting algorithms support",
-      "Interactive learning interface"
-    ],
-    challenges: "Creating smooth animations that accurately represent algorithm steps while maintaining educational clarity and user engagement.",
-    impact: "I wanted to make abstract concepts more tangible by visually showing it. After completing this project, I got inspired to create a pathfinding tool to demonstrate how algorithms solve mazes in real time. I am currently still working on completing this project."
   }
 ];
 
@@ -281,6 +280,42 @@ export default function Home() {
                             </Button>
                           </a>
                         )}
+                        {project.id === 2 && (
+                          <>
+                            <Link href="/projects/macro-forecasting-ml" className="inline-block relative z-50">
+                              <Button variant="outline" className="btn-8bit-white-sm relative z-50" style={{ pointerEvents: 'auto', cursor: 'pointer' }}>
+                                <ExternalLink size={20} className="mr-2" />
+                                READ CASE STUDY
+                              </Button>
+                            </Link>
+                            <a 
+                              href={project.github} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-block relative z-50"
+                              style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+                            >
+                              <Button variant="outline" className="btn-8bit-white-sm relative z-50" style={{ pointerEvents: 'auto', cursor: 'pointer' }}>
+                                <ExternalLink size={20} className="mr-2" />
+                                VIEW ON GITHUB
+                              </Button>
+                            </a>
+                          </>
+                        )}
+                        {project.github && project.github !== "https://github.com" && project.id !== 1 && project.id !== 2 && (
+                          <a 
+                            href={project.github} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="inline-block relative z-50"
+                            style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+                          >
+                            <Button variant="outline" className="btn-8bit-white-sm relative z-50" style={{ pointerEvents: 'auto', cursor: 'pointer' }}>
+                              <ExternalLink size={20} className="mr-2" />
+                              VIEW ON GITHUB
+                            </Button>
+                          </a>
+                        )}
                       </div>
                     </div>
 
@@ -290,7 +325,6 @@ export default function Home() {
                         /* ZocraticMMA Image */
                         <div className="relative group">
                           <div className="glass p-6 hover:border-white/60 transition-all duration-300 overflow-hidden">
-                            {/* Header */}
                             <div className="mb-4 text-center">
                               <h4 className="text-lg font-semibold pixel-text mb-2" style={{ color: 'var(--pixel-white)' }}>
                                 LIVE APPLICATION
@@ -299,22 +333,18 @@ export default function Home() {
                                 ZOCRATICMMA.COM
                               </span>
                             </div>
-                            
-                            {/* Enhanced Image Container - True Pop-out Effect */}
                             <div 
                               className="relative bg-gradient-to-br from-gray-900 to-black p-3 rounded-lg border-2 border-gray-700 shadow-2xl group/image cursor-pointer z-50"
                               onClick={() => setShowZoomedImage(showZoomedImage === 'zocratic' ? null : 'zocratic')}
                               style={{ pointerEvents: 'auto', cursor: 'pointer' }}
                             >
-                              {/* Browser-like frame dots */}
                               <div className="absolute top-0.5 left-3 flex space-x-1.5 z-20">
                                 <div className="w-2 h-2 rounded-full bg-red-500 opacity-90"></div>
                                 <div className="w-2 h-2 rounded-full bg-yellow-500 opacity-90"></div>
                                 <div className="w-2 h-2 rounded-full bg-green-500 opacity-90"></div>
                               </div>
-                              
                               <Image 
-                                src="/projects/zocraticmmahome.png" 
+                                src="/projects/zocratic/zocraticmma_screenshot.png" 
                                 alt="ZocraticMMA Application Screenshot"
                                 width={800}
                                 height={400}
@@ -327,8 +357,6 @@ export default function Home() {
                                 }}
                               />
                             </div>
-                            
-                            {/* Stats Row */}
                             <div className="mt-4 flex justify-between items-center">
                               <div className="text-center">
                                 <div className="text-sm font-bold pixel-text" style={{ color: 'var(--accent-success)' }}>20+</div>
@@ -345,67 +373,61 @@ export default function Home() {
                             </div>
                           </div>
                         </div>
-                      ) : project.id === 3 ? (
-                        /* Sorting Visualizer Image */
+                      ) : project.id === 2 ? (
+                        /* Macro ML: restore full block styling, remove only the image */
                         <div className="relative group">
                           <div className="glass p-6 hover:border-white/60 transition-all duration-300 overflow-hidden">
-                            {/* Header */}
-                            <div className="mb-4 text-center">
-                              <h4 className="text-lg font-semibold pixel-text mb-2" style={{ color: 'var(--pixel-white)' }}>
-                                  DEMO
-                              </h4>
-                              <span className="text-xs pixel-text" style={{ color: 'var(--accent-secondary)' }}>
-                                ALGORITHM VISUALIZATION
-                              </span>
-                            </div>
-                            
-                            {/* Enhanced Image Container - True Pop-out Effect */}
-                            <div 
-                              className="relative bg-gradient-to-br from-gray-900 to-black p-3 rounded-lg border-2 border-gray-700 shadow-2xl group/image cursor-pointer z-50"
-                              onClick={() => setShowZoomedImage(showZoomedImage === 'sorting' ? null : 'sorting')}
-                              style={{ pointerEvents: 'auto', cursor: 'pointer' }}
-                            >
-                              {/* Browser-like frame dots */}
-                              <div className="absolute top-0.5 left-3 flex space-x-1.5 z-20">
-                                <div className="w-2 h-2 rounded-full bg-red-500 opacity-90"></div>
-                                <div className="w-2 h-2 rounded-full bg-yellow-500 opacity-90"></div>
-                                <div className="w-2 h-2 rounded-full bg-green-500 opacity-90"></div>
+                            <div className="space-y-8">
+                              <div>
+                                <h4 className="text-base font-semibold mb-4 pixel-text" style={{ color: 'var(--pixel-white)' }}>
+                                  ACTUAL VS PREDICTED
+                                </h4>
+                                <div
+                                  onClick={() => setShowZoomedImage(showZoomedImage === 'macro-pred' ? null : 'macro-pred')}
+                                  className="block w-full text-left"
+                                  style={{ cursor: 'pointer' }}
+                                >
+                                  <div className="relative bg-gradient-to-br from-gray-900 to-black p-3 rounded-lg border-2 border-gray-700 shadow-2xl">
+                                    <div className="absolute top-0.5 left-3 flex space-x-1.5 z-20 pointer-events-none">
+                                      <div className="w-2 h-2 rounded-full bg-red-500 opacity-90"></div>
+                                      <div className="w-2 h-2 rounded-full bg-yellow-500 opacity-90"></div>
+                                      <div className="w-2 h-2 rounded-full bg-green-500 opacity-90"></div>
+                                    </div>
+                                    <Image
+                                      src="/projects/macro-ml/predictions_vs_actual_window.png"
+                                      alt="Actual vs Predicted Unemployment Rate (Test Period)"
+                                      width={1000}
+                                      height={600}
+                                      unoptimized
+                                      className="w-full h-auto rounded-md shadow-xl transition-all duration-300"
+                                      style={{ background: "#1a1a1a" }}
+                                    />
+                                  </div>
+                                </div>
                               </div>
-                              
-                              <Image 
-                                src="/projects/sortingVisualizer.png" 
-                                alt="Sorting Visualizer Application Screenshot"
-                                width={800}
-                                height={400}
-                                className="w-full h-auto rounded-md shadow-xl transition-all duration-300"
-                                style={{ 
-                                  maxHeight: '400px', 
-                                  objectFit: 'contain',
-                                  filter: 'brightness(1.1) contrast(1.15) saturate(1.1)',
-                                  background: '#1a1a1a'
-                                }}
-                              />
-                            </div>
-                            
-                            {/* Stats Row */}
-                            <div className="mt-4 flex justify-between items-center">
-                              <div className="text-center">
-                                <div className="text-sm font-bold pixel-text" style={{ color: 'var(--accent-success)' }}>5+</div>
-                                <div className="text-xs pixel-text" style={{ color: 'var(--pixel-light-gray)' }}>ALGORITHMS</div>
+
+                              <div>
+                                <h4 className="text-base font-semibold mb-4 pixel-text" style={{ color: 'var(--pixel-white)' }}>
+                                  IMPACT & RESULTS
+                                </h4>
+                                <p className="text-sm leading-relaxed pixel-text" style={{ color: 'var(--pixel-light-gray)' }}>
+                                  {project.impact}
+                                </p>
                               </div>
-                              <div className="text-center">
-                                <div className="text-sm font-bold pixel-text" style={{ color: 'var(--accent-warning)' }}>REAL-TIME</div>
-                                <div className="text-xs pixel-text" style={{ color: 'var(--pixel-light-gray)' }}>VISUALIZATION</div>
-                              </div>
-                              <div className="text-center">
-                                <div className="text-sm font-bold pixel-text" style={{ color: 'var(--accent-primary)' }}>EDU</div>
-                                <div className="text-xs pixel-text" style={{ color: 'var(--pixel-light-gray)' }}>FOCUSED</div>
+
+                              <div className="pt-6 border-t" style={{ borderColor: 'var(--accent-primary)' }}>
+                                <div className="flex items-center justify-between text-sm">
+                                  <span className="pixel-text" style={{ color: 'var(--pixel-light-gray)' }}>PROJECT STATUS</span>
+                                  <Badge className="badge-8bit" style={{ background: 'var(--accent-success)', color: 'var(--pixel-black)' }}>
+                                    COMPLETED
+                                  </Badge>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       ) : (
-                        /* Default Project Card for other projects */
+                        /* Default Project Card for remaining projects */
                         <Card className="glass hover:border-white/40 transition-all duration-300">
                           <CardContent className="p-8">
                             <div className="space-y-8">
@@ -413,7 +435,7 @@ export default function Home() {
                                 <h4 className="text-base font-semibold mb-4 pixel-text" style={{ color: 'var(--pixel-white)' }}>TECHNICAL CHALLENGES</h4>
                                 <p className="text-sm leading-relaxed pixel-text" style={{ color: 'var(--pixel-light-gray)' }}>{project.challenges}</p>
                               </div>
-                              
+
                               <div>
                                 <h4 className="text-base font-semibold mb-4 pixel-text" style={{ color: 'var(--pixel-white)' }}>IMPACT & RESULTS</h4>
                                 <p className="text-sm leading-relaxed pixel-text" style={{ color: 'var(--pixel-light-gray)' }}>{project.impact}</p>
@@ -493,17 +515,29 @@ export default function Home() {
         onClick={() => setShowZoomedImage(null)}
       >
         <div className="relative w-full h-full flex items-center justify-center">
-          <Image
-            src={showZoomedImage === 'zocratic' ? "/projects/zocraticmmahome.png" : "/projects/sortingVisualizer.png"}
-            alt={showZoomedImage === 'zocratic' ? "ZocraticMMA Application - Full Size" : "Sorting Visualizer - Full Size"}
-            width={1200}
-            height={800}
-            className="max-w-[95vw] max-h-[85vh] sm:max-w-[90vw] sm:max-h-[90vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
-            style={{
-              minWidth: '320px',
-              background: 'white'
-            }}
-          />
+          <div
+            className="relative w-[95vw] h-[85vh] sm:w-[90vw] sm:h-[90vh] rounded-lg shadow-2xl overflow-hidden"
+            style={{ background: 'white' }}
+          >
+            <Image
+              src={
+                showZoomedImage === "macro-pred"
+                  ? "/projects/macro-ml/predictions_vs_actual_window.png"
+                  : "/projects/zocratic/zocraticmma_screenshot.png"
+              }
+              alt={showZoomedImage === 'macro-pred' ? "Actual vs Predicted Unemployment Rate (Full Size)" : "ZocraticMMA Application - Full Size"}
+              fill
+              sizes="(max-width: 640px) 95vw, 90vw"
+              unoptimized={showZoomedImage === "macro-pred"}
+              className="object-contain"
+              style={
+                showZoomedImage === "macro-pred"
+                  ? undefined
+                  : undefined
+              }
+              priority
+            />
+          </div>
           
           {/* Close instruction */}
           <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 px-4 py-2 sm:px-6 sm:py-3 rounded-lg">
