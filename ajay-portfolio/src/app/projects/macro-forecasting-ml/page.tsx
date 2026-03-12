@@ -163,7 +163,7 @@ export default function MacroForecastingMLPage() {
                     </tr>
                   </thead>
                   <tbody style={{ color: "var(--pixel-light-gray)" }}>
-                    {RESULTS_TABLE.map((row, i) => (
+                    {RESULTS_TABLE.map((row) => (
                       <tr key={row.model} style={{ borderTop: "1px solid var(--accent-primary)" }}>
                         <td className="p-3">{row.model}</td>
                         <td className="text-right p-3">{row.rmse}</td>
