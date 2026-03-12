@@ -255,11 +255,6 @@ body::-webkit-scrollbar {
     flex-shrink: 1;
   }
   
-  /* Grid layout fixes */
-  .lg\\:grid-cols-2 {
-    grid-template-columns: 1fr;
-  }
-  
   /* Consistent mobile padding */
   .px-4 { padding-inline: 1rem; }
   .px-6 { padding-inline: 1.5rem; }
