@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "tailwindcss";
 
 /* ========================================
    CSS CUSTOM PROPERTIES & THEME VARIABLES
@@ -688,9 +688,7 @@ html, body, *, *::before, *::after {
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar,
-*::-webkit-scrollbar,
-*::before::-webkit-scrollbar,
-*::after::-webkit-scrollbar {
+*::-webkit-scrollbar {
   display: none !important;
   width: 0 !important;
   height: 0 !important;
