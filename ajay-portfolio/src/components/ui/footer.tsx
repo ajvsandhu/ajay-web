@@ -69,7 +69,7 @@ export function Footer() {
             <span>GITHUB</span>
           </a>
           <a 
-            href="https://drive.google.com/file/d/1dhok5CajhMXjkndI7piESKnsqIGkDGEu/view?usp=sharing"
+            href="https://drive.google.com/file/d/1_phH3xRWpUBA-sBzYRfwADzs4u13R0xl/view?usp=sharing"
             target="_blank"
             className={`flex items-center gap-3 px-6 py-3 transition-all duration-300 text-base pixel-text glass rounded-md ${
               isTransitioning ? 'pointer-events-none opacity-50' : ''

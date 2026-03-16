@@ -64,7 +64,7 @@ const certificates: Certificate[] = [
     issuer: "CANADIAN RED CROSS",
     date: "APR 2025 - APR 2028",
     id: "106024456",
-    link: "https://drive.google.com/file/d/12DtsY0i_7OHqhrBB_IZarhOQSKMufzbt/view"
+    link: "https://drive.google.com/file/d/1_phH3xRWpUBA-sBzYRfwADzs4u13R0xl/view?usp=sharing"
   }
 ];
 
