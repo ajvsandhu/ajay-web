@@ -484,7 +484,7 @@ export default function Home() {
                     </button>
                   </Link>
                   <a 
-                    href="https://drive.google.com/file/d/1_phH3xRWpUBA-sBzYRfwADzs4u13R0xl/view?usp=sharing" 
+                    href="https://drive.google.com/file/d/10d8sn9Dfe4zcKGuYp6FVANpwSw-loCV3/view?usp=sharing" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="relative z-50"
